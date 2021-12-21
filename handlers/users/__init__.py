@@ -5,7 +5,7 @@ from .get_districts import dispatcher
 from .get_our_offices import dispatcher
 from .near_offices import dispatcher
 from .help import dispatcher
-from .feedback import dispatcher
+# from .feedback import dispatcher
 from .backtotop import dispatcher
 
 

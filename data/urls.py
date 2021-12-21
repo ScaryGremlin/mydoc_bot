@@ -11,4 +11,5 @@ class Urls:
     iis_api_feed_back_send: str = "feedback/send"
     iis_api_record_preliminary: str = "record/preliminary"
     iis_api_schedule_list: str = "schedule/list"
+    iis_api_feedback: str = "feedback/send"
     google_maps: str = "https://www.google.com/maps/search/?api=1&query={lat}%2C{lon}"
