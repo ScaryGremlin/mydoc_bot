@@ -62,10 +62,10 @@ async def get_case_status_by_personal_data(query: types.InlineQuery):
     tg_user_id = query.from_user.id
     offset = int(query.offset) if query.offset else 0
     user_info = await db_connector.get_user_info(tg_user_id)
-    _, surname, mobile, cases_as_string = user_info[0]
     results_inline_query = []
-    # Если есть дела пользователя в базе бота...
-    if cases_as_string:
+    # Если пользователь есть в базе бота и есть его дела
+    if user_info and user_info[0][3]:
+        _, surname, mobile, cases_as_string = user_info[0]
         cases = loads(cases_as_string)
         choice_case_text = "<b>Выбрано дело: </b>"
         for case in islice(cases.get("data"), offset, offset + 50):

@@ -206,3 +206,9 @@ class IisConnector:
         # Отсортировать список словарей по ключу и вернуть
         # number_nearest первых элементов отсортированного списка
         return sorted(near_offices_list, key=itemgetter("distance"))[:number_nearest]
+
+    async def get_feedback(self, fio: str, mobile: str, message: str) -> str:
+        """
+
+        """
+        pass

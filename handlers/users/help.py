@@ -6,7 +6,7 @@ from loader import dispatcher, emojis
 
 
 @dispatcher.callback_query_handler(main_callback.filter(main_choice="help"))
-async def main_menu(call: types.CallbackQuery):
+async def get_help(call: types.CallbackQuery):
     msg = [
         "<b>Что можно сделать с помощью этого бота?</b>",
         "",
