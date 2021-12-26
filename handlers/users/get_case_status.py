@@ -108,5 +108,12 @@ async def get_detail_case_by_personal_data(message: types.Message):
     if user_info:
         _, _, _, cases_as_string = user_info[0]
         cases = loads(cases_as_string)
-        msg = next((case for case in cases.get("data") if case.get("delonum") == case_number), None)
-        await message.answer(f"<code>{msg}</code>", reply_markup=backtotopmenu)
+        raw_msg = next((case for case in cases.get("data") if case.get("delonum") == case_number), None)
+        msg = [
+            f"<b>Номер дела:</b> {raw_msg.get('delonum')}",
+            f"<b>Услуга:</b> {raw_msg.get('nusl')}",
+            f"<b>ФИО:</b> {raw_msg.get('fio')}",
+            f"<b>Дата открытия дела:</b> {raw_msg.get('dat')}",
+            f"<b>Статус дела: </b>{raw_msg.get('status')}, {raw_msg.get('status_detail').lower()}",
+        ]
+        await message.answer("\n".join(msg), reply_markup=backtotopmenu)

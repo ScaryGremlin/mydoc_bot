@@ -80,8 +80,8 @@ class IisConnector:
             return "\n".join(msg)
 
     async def get_detail_list_cases(self, district_id: str,
-                              surname: str, snils: str = None,
-                              mobile: str = None) -> Union[dict, None]:
+                                    surname: str, snils: str = "",
+                                    mobile: str = None) -> Union[dict, None]:
         """
         Возвращает словарь с делами заявителя по СНИЛС и фамилии
         :param district_id: id района

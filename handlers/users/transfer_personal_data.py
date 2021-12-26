@@ -64,7 +64,7 @@ async def get_surname(message: types.Message, state: FSMContext):
     # Если дел нет, то не записывать его персональные данные в базу
     user_info = await db_connector.get_user_info(tg_user_id)
     district_id, _, _, _ = user_info[0]
-    cases = iis_connector.get_detail_list_cases(district_id=district_id, surname=surname, mobile=mobile)
+    cases = await iis_connector.get_detail_list_cases(district_id=district_id, surname=surname, mobile=mobile)
     if cases:
         await db_connector.update_user_info(tg_user_id=tg_user_id,
                                             surname=surname,
