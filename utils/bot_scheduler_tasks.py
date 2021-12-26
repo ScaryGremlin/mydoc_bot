@@ -22,9 +22,9 @@ async def check_cases_statuses(dispatcher: Dispatcher):
             cases_from_bot = loads(cases_from_bot_as_string)
             list_cases_from_bot_db = sorted(cases_from_bot.get("data"), key=itemgetter("id"))
             # Получить статусы дел из информационной системы по текущему пользователю
-            cases_from_iis = iis_connector.get_detail_list_cases(district_id=district_id,
-                                                                 surname=surname,
-                                                                 mobile=mobile)
+            cases_from_iis = await iis_connector.get_detail_list_cases(district_id=district_id,
+                                                                       surname=surname,
+                                                                       mobile=mobile)
             list_cases_from_iis = sorted(cases_from_iis.get("data"), key=itemgetter("id"))
             # Сравнить два словаря - словарь с текущими статусами из базы бота
             # и словарь из дел со статусами из информационной системы.
