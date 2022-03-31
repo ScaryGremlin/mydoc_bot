@@ -28,7 +28,7 @@ class DBConnector:
 
     async def create_users_table(self) -> None:
         """
-        Создать таблицу с данными пользоватеей в базе данных бота
+        Создать таблицу с данными пользователей в базе данных бота
         :return:
         """
         query = """CREATE TABLE IF NOT EXISTS users (
