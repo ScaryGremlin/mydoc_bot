@@ -88,7 +88,7 @@ async def get_case_status_by_personal_data(query: types.InlineQuery):
     else:
         description = [
             "Сначала сообщите боту свои персональные данные — номер телефона и фамилию.",
-            "Выберете в главноем меню соответствующий пункт.",
+            "Выберете в главном меню соответствующий пункт.",
         ]
         message_text = "<code>Нет персональных данных</code>"
         results_inline_query.append(types.InlineQueryResultArticle(
