@@ -14,6 +14,7 @@ from keyboards.inline.main import mainmenu
 from loader import dispatcher
 from states.case_status import CaseStatusQuestions
 from states.transfer_personal_data import TransferPersonalDataQuestions
+from states.feedback import FeedbackQuestions
 
 
 @dispatcher.callback_query_handler(near_offices_callback.filter(nearoffices_choice="backtotop"))
@@ -26,6 +27,7 @@ from states.transfer_personal_data import TransferPersonalDataQuestions
 @dispatcher.callback_query_handler(state=CaseStatusQuestions.Q1)
 @dispatcher.callback_query_handler(state=TransferPersonalDataQuestions.Q1)
 @dispatcher.callback_query_handler(state=TransferPersonalDataQuestions.Q2)
+@dispatcher.callback_query_handler(state=FeedbackQuestions.Q1)
 async def backtotop(call: types.CallbackQuery, state: FSMContext):
     await call.answer()
     await call.message.edit_text("Добро пожаловать в главное меню, вот что здесь есть:")

@@ -41,7 +41,7 @@ async def select_our_office_command(query: types.InlineQuery):
     else:
         description = [
             "Сначала сообщите боту интересующий вас район.",
-            "Выберете в главноем меню соответствующий пункт.",
+            "Выберете в главном меню соответствующий пункт.",
         ]
         message_text = "<code>Не выбран район</code>"
         results_inline_query.append(types.InlineQueryResultArticle(

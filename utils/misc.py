@@ -1,3 +1,6 @@
+import mimetypes
+import smtplib
+from email.message import EmailMessage
 from typing import Union
 
 from loader import emojis
@@ -83,3 +86,36 @@ def get_change_case_status_msg(raw_data: list) -> list:
         msg.append(f"<b>Статус: </b><code>{case.get('status')}, {case.get('status_detail')}</code>")
         msg.append("")
     return msg
+
+
+def send_mail(sender: str, recipients: list, subject: str, body: str, creds: dict, attachment: str = None):
+    """
+    Отправить сообщение электронной почты
+    :param sender: Отправитель письма
+    :param recipients: Список получателей письма
+    :param subject: Тема письма
+    :param body: Тело письма
+    :param attachment: Файл для отправки
+    :param creds:
+    """
+    email_message = EmailMessage()
+    email_message["Subject"] = subject
+    email_message["To"] = recipients
+    email_message["From"] = sender
+    email_message.preamble = "You will not see this in a MIME-aware mail reader. \n"
+    if attachment:
+        ctype, encoding = mimetypes.guess_type(attachment)
+        if ctype is None or encoding is not None:
+            ctype = 'application/octet-stream'
+        maintype, subtype = ctype.split('/', 1)
+        with open(attachment, 'rb') as attached_file:
+            email_message.add_attachment(attached_file.read(), maintype=maintype,
+                                         subtype=subtype, filename=attachment)
+    email_message.set_content(body)
+    smtp_server = creds.get("smtp").get("server")
+    smtp_port = creds.get("smtp").get("port")
+    smtp_login = creds.get("login")
+    smtp_password = creds.get("password")
+    with smtplib.SMTP_SSL(smtp_server, smtp_port) as smtp_conn:
+        smtp_conn.login(smtp_login, smtp_password)
+        smtp_conn.send_message(email_message)

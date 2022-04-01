@@ -12,8 +12,13 @@ mainmenu.insert(InlineKeyboardButton(text=f"{emojis.clipboard} Узнать ст
                                      callback_data=main_callback.new(main_choice="case_status")))
 mainmenu.insert(InlineKeyboardButton(text=f"{emojis.office_building} Наши отделения",
                                      switch_inline_query_current_chat="offices"))
+
+# mainmenu.insert(InlineKeyboardButton(text=f"{emojis.round_pushpin} Найти два ближайших офиса",
+#                                      switch_inline_query_current_chat="near"))
+
 mainmenu.insert(InlineKeyboardButton(text=f"{emojis.round_pushpin} Найти два ближайших офиса",
-                                     switch_inline_query_current_chat="near"))
+                                     callback_data=main_callback.new(main_choice="near")))
+
 mainmenu.insert(InlineKeyboardButton(text=f"{emojis.slightly_smiling_face} {emojis.frowning_face} Обратная связь",
                                      callback_data=main_callback.new(main_choice="feedback")))
 mainmenu.insert(InlineKeyboardButton(text=f"{emojis.red_question_mark} Помощь",
